@@ -23,3 +23,25 @@ def pricing():
     for i in range(len(lst)):
     if main[0] <= lst[0] <= main[1] and main[2] <= lst[1] <= main[3] and main[4] <= lst[2] <= main[5]:
         count +=1
+
+------------------UPDATE------------------------
+
+def pricing():
+    #create input functions for user to enter in desired ranges for three parameters
+    f1, f2, r1, r2, ltv1, ltv2 = input("Please enter your lower and upper bound ficos, rates, and ltv: ").strip().split(' ')
+    f1, f2, r1, r2, ltv1, ltv2 = [int(f1), int(f2), int(r1), int(r2), float(ltv1), float(ltv2)]
+    
+    #list to create an iterable figure through the following data dump
+    main = list([f1, f2, r1, r2, ltv1, ltv2])
+    
+    #create list to hold all the data from the main data dump
+    lst = []    
+    for i in range(len(data)):
+        lst.append([ficos[i], rates[i], ltv[i], dlq[i]])
+
+    count = 0
+    
+    for i in range(len(lst)):
+        if main[0] <= lst[i][0] <= main[1] and main[2] <= lst[i][1] <= main[3] and main[4] <= lst[i][2] <= main[5] and lst[i][3] in [6, 9, 'BK', 'FC', 'REO', 'REP'] :
+            count +=1
+    print("{0:.0f}%".format(count/len(lst)*100), "loans are 60+ days delinquent.")
