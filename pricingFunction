@@ -1,0 +1,25 @@
+ficos = data['CurrFICO']
+rates = data['CurrRate']
+ltv = data['CurrLTV']
+current = data['MonthsCurrent']
+dlq = data['Updated DLQ']
+
+
+def pricing():
+    #create input functions for user to enter in desired ranges for three parameters
+    f1, f2, r1, r2, ltv1, ltv2 = input("Please enter your lower and upper bound ficos, rates, and ltv: ").strip().split(' ')
+    f1, f2, r1, r2, ltv1, ltv2 = [int(f1), int(f2), int(r1), int(r2), int(ltv1), int(ltv2)]
+    
+    #list to create an iterable figure through the following data dump
+    main = list([f1, f2, r1, r2, ltv1, ltv2])
+    
+    #create list to hold all the data from the main data dump
+    lst = []    
+    for i in range(len(data)):
+        lst.append([ficos[i], rates[i], ltv[i]])
+
+    count = 0
+    
+    for i in range(len(lst)):
+    if main[0] <= lst[0] <= main[1] and main[2] <= lst[1] <= main[3] and main[4] <= lst[2] <= main[5]:
+        count +=1
